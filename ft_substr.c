@@ -1,40 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 13:33:10 by eschmid           #+#    #+#             */
-/*   Updated: 2021/10/21 11:29:36 by eschmid          ###   ########.fr       */
+/*   Created: 2021/09/21 14:10:24 by eschmid           #+#    #+#             */
+/*   Updated: 2021/10/22 10:03:45 by eschmid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *str)
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		i;
-	int		len;
-	char	*new_str;
+	char	*str;
+	size_t	size;
+	size_t	i;
 
-	len = 0;
-	while (str[len] != '\0')
-		len++;
-	new_str = (char *)malloc(sizeof(*str) * (len + 1));
-	if (!new_str)
-		return (NULL);
+	size = 0;
 	i = 0;
-	while (i < len)
+	if (!s)
+		return (NULL);
+	str = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!str)
+		return (NULL);
+	while (s[i])
 	{
-		new_str[i] = str[i];
+		if (len > size && i >= start)
+		{	
+			str[size] = s[i];
+			size++;
+		}
 		i++;
 	}
-	new_str[i] = '\0';
-	return (new_str);
+	str[size] = '\0';
+	return (str);
 }
 /*
 int	main()
 {
-	printf("%s\n", ft_strdup("salutbroooooo"));
+	printf("%s\n", ft_substr("salut", 2, 3));
 }*/

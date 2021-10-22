@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eschmid <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 13:33:10 by eschmid           #+#    #+#             */
-/*   Updated: 2021/10/21 11:29:36 by eschmid          ###   ########.fr       */
+/*   Created: 2021/10/21 13:16:02 by eschmid           #+#    #+#             */
+/*   Updated: 2021/10/22 11:28:50 by eschmid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *str)
+char    *ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	int		len;
-	char	*new_str;
+    int        i;
+    int        size;
+	char 		*str;
 
-	len = 0;
-	while (str[len] != '\0')
-		len++;
-	new_str = (char *)malloc(sizeof(*str) * (len + 1));
-	if (!new_str)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		new_str[i] = str[i];
-		i++;
-	}
-	new_str[i] = '\0';
-	return (new_str);
+    if (!s1 || !set)
+        return (NULL);
+    i = 0;
+    size = ft_strlen(s1);
+    while (s1[i] && ft_strchr(set, s1[i]))
+        i++;
+    while (i < size && ft_strchr(set, s1[size]))
+        size--;
+    str = ft_substr(s1, i, size - i + 1);
+    return (str);
 }
 /*
 int	main()
 {
-	printf("%s\n", ft_strdup("salutbroooooo"));
+	printf("%s\n", ft_strtrim("oooooozebiiiooooooo", "o"));
 }*/
