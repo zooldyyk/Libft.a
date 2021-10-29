@@ -1,0 +1,3 @@
+# Libft.a
+
+NIKEZ VOUS SURTOUT TCHOUPI
